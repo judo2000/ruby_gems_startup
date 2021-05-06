@@ -116,7 +116,7 @@ Rails.application.configure do
   # these configuration options.
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.dataActionMailer::Base.smtp_settings = {
-    config.action_mailer.default_url_options = {:host => 'allaboutjudo.com'}
+    config.action_mailer.default_url_options = {:host => 'judo200-ruby-gems-startup.herokuapp.com'}
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
     :address => "smtpout.secureserver.net",
