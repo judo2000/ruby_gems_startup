@@ -7,8 +7,8 @@ Rails.application.configure do
   :address => "smtpout.secureserver.net",
   :port    => 25,
   :domain  => 'allaboutjudo.com'
-  # Settings specified here will take precedence over those in config/application.rb.
-
+  # Settinif ENV["RAILS_LOG_TO_STDOUT"].present?
+    
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -94,19 +94,11 @@ Rails.application.configure do
   # require "syslog/logger"
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  # if ENV["RAILS_LOG_TO_STDOUT"].present?
-  #   logger           = ActiveSupport::Logger.new(STDOUT)
-  #   logger.formatter = config.log_formatter
-  #   config.logger    = ActiveSupport::TaggedLogging.new(logger)
-  # endActionMailer::Base.smtp_settings = {
-  #   :address => 'smtp.sendgrid.net', 
-  #   :port => '587', 
-  #   :authentication => :plain, 
-  #   :user_name => ENV['SENDGRID_USERNAME'], 
-  #   :password => ENV['SENDGRID_PASSWORD'], 
-  #   :domain => 'heroku.com', 
-  #   :enable_starttls_auto => true 
-  # }migrations.
+  if ENV["RAILS_LOG_TO_STDOUT"].present?
+    logger           = ActiveSupport::Logger.new(STDOUT)
+    logger.formatter = config.log_formatter
+    config.logger    = ActiveSupport::TaggedLogging.new(logger)
+  end
   config.active_record.dump_schema_after_migration = false
 
   # Inserts middleware to perform automatic connection switching.
