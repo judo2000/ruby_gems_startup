@@ -1,12 +1,7 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  config.action_mailer.default_url_options = {:host => 'allaboutjudo.com'}
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-  :address => "smtpout.secureserver.net",
-  :port    => 25,
-  :domain  => 'allaboutjudo.com'
+  
   # Settinif ENV["RAILS_LOG_TO_STDOUT"].present?
     
   # Code is not reloaded between requests.
@@ -120,13 +115,11 @@ Rails.application.configure do
   # these configuration options.
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.dataActionMailer::Base.smtp_settings = {
-  :address => 'smtp.sendgrid.net', 
-  :port => '587', 
-  :authentication => :plain, 
-  :user_name => ENV['SENDGRID_USERNAME'], 
-  :password => ENV['SENDGRID_PASSWORD'], 
-  :domain => 'heroku.com', 
-  :enable_starttls_auto => true 
-}base_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
+    config.action_mailer.default_url_options = {:host => 'allaboutjudo.com'}
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+    :address => "smtpout.secureserver.net",
+    :port    => 25,
+    :domain  => 'allaboutjudo.com'
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 end
