@@ -15,6 +15,9 @@ class User < ApplicationRecord
 
   has_many :courses
 
+  extend FriendlyId
+  friendly_id :email, use: :slugged
+
   after_create :assign_default_role
 
   def assign_default_role
@@ -26,5 +29,19 @@ class User < ApplicationRecord
       self.add_role(:student) if self.roles.blank?
       self.add_role(:teacher) # if you want any user to be able to create own course
     end 
+  end
+
+  validate :must_have_a_role, on: :update
+  
+  def online?
+    updated_at > 2.minutes.ago
+  end
+
+  private 
+
+  def must_have_a_role
+    unless roles.any? 
+      errors.add(:roles, "A user must have at least one role!")
+    end
   end
 end
