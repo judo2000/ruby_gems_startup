@@ -2,13 +2,6 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   
-  Rails.application.config.middleware.use ExceptionNotification::Rack,
-    email: {
-      deliver_with: :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
-      email_prefix: '[PREFIX] ',
-      sender_address: %{"judo2000-ruby-gems-startup" <support@judo200-ruby-gems-startup.herokuapp.com>},
-      exception_recipients: %w{judo2000@comcast.net.com}
-    }
   # Settinif ENV["RAILS_LOG_TO_STDOUT"].present?
     
   # Code is not reloaded between requests.
@@ -130,4 +123,12 @@ Rails.application.configure do
     :port    => 25,
     :domain  => 'allaboutjudo.com'
   }
+
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+    email: {
+      deliver_with: :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
+      email_prefix: '[PREFIX] ',
+      sender_address: %{"judo2000-ruby-gems-startup" <support@judo200-ruby-gems-startup.herokuapp.com>},
+      exception_recipients: %w{judo2000@comcast.net.com}
+    }
 end
