@@ -2,11 +2,11 @@
   .text-center
     Activity 
     .badge.badge-info 
-      = @activitie.count 
+      = @activities.count 
 %p
 - @activities.each do |activity|
   %li.list-group-item
-    = activit.id
+    = activity.id
     = activity.trackable_type
     = activity.trackable_id
     = link_to activity.trackable, activity.trackable 
