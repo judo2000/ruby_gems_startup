@@ -8,6 +8,10 @@
     .text-center
       = number_to_currency(course.price)
   .card-footer 
+    .fa.fa-book 
+    = course.lessons.count 
+  
+  .card-footer 
     .row 
       .col-md-6
         .fa.fa-globe-americans 
@@ -24,9 +28,9 @@
       .col-md-6
         .text-right
           .fa.fa-chalkboard-teacher
-          = course.user.username
+          = link_to course.user.username, user_path(course.user)
   - if current_user
-    -if policy(course).edit?
+    - if policy(course).edit?
       .card-footer 
         = link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-warning '
         = link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
