@@ -2,17 +2,24 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+    email: {
+      deliver_with: :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
+      email_prefix: '[PREFIX] ',
+      sender_address: %{"ruby-gems-startup" <support@judo200-ruby-gems-startup.herokuapp.com/>},
+      exception_recipients: %w{judo2000@comcast.net.com}
+    }
   # Settinif ENV["RAILS_LOG_TO_STDOUT"].present?
     
   # Code is not reloaded between requests.
   config.cache_classes = true
 
-  # Eager load code on boot. This eager loads most of Rails and
+  # Eager load cod    config.action_mailer.default_url_options = {:hose on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
-
+  config.action_mailer.default_url_options = {:hos
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
@@ -73,7 +80,7 @@ Rails.application.configure do
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
 
-  # Send deprecation notices to registered listeners.
+  # Se    config.action_mailer.default_url_options = {:hosnd deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
 
   # Log disallowed deprecations.
